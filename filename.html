@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>A simple HTML document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <button id="socks.shirt.pants" type='button'> dummy text here</button>
+    <div id='response'></div>
+<script>
+   $(document).ready(function() {
+      $("button").click(function(event){
+         var the_id = event.target.id;
+         $.ajax({
+            url: "/recieve_data",
+            type: "get",
+            data: {button_id: the_id},
+           success: function(response) {
+           $("#response").html(response);
+         },
+          error: function(xhr) {
+        //Do Something to handle error
+        }
+       });
+     });
+   });
+</script>
+</body>
+</html>
